@@ -1,9 +1,18 @@
+ext.configFile = file "build.properties"
+
+configFile.withReader {
+    // Load config.
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse prop
+}
+
 buildscript {
     repositories {
         mavenCentral()
         maven {
             name = "forge"
-            url = "http://files.minecraftforge.net/maven"
+            url = "https://maven.minecraftforge.net/"
         }
         maven {
             name = "sonatype"
@@ -11,18 +20,20 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+        classpath ('com.anatawa12.forge:ForgeGradle:1.2-1.0.+') {
+            changing = true
+        }
     }
 }
 
 apply plugin: 'forge'
 
-version = "1.6.2"
+version = "${config.mc_version}-${config.mod_version}"
 group= "com.rwtema.denseores" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "denseores"
 
 minecraft {
-    version = "1.7.10-10.13.2.1291"
+    version = config.mc_version + "-" + config.forge_version
     runDir = "run"
 }
 
