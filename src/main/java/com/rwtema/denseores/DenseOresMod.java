@@ -35,10 +35,6 @@ public class DenseOresMod {
     	
         DenseOresRegistry.buildOreDictionary();
         ModIntegration.addModIntegration();
-
-        WorldGenOres worldGen = new WorldGenOres();
-        GameRegistry.registerWorldGenerator(worldGen, 1000);
-        MinecraftForge.EVENT_BUS.register(worldGen);
     }
 
     @EventHandler
