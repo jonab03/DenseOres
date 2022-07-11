@@ -30,7 +30,7 @@ apply plugin: 'forge'
 
 version = "${config.mc_version}-${config.mod_version}"
 group= "com.rwtema.denseores" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "denseores"
+archivesBaseName = "denseores-PR"
 
 minecraft {
     version = config.mc_version + "-" + config.forge_version
